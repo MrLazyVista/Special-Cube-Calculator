@@ -927,9 +927,9 @@ def count_this_stat(roll, stat):
     good_lines = []
 #########################################
     adjust = 0
-    if item_level >= 160 and stat in ['str','dex','int','luk','any']:
-        adjust = 1;
     if selected_cube == 'bonus':
+        if item_level >= 250 and stat in ['str','dex','int','luk','any']:
+            adjust = 1;
         if stat in ['str','dex','int','luk']:
             for line in roll:
                 if line.startswith(stat+'_') or line.startswith('all'):
@@ -957,6 +957,8 @@ def count_this_stat(roll, stat):
                     good_lines += [float(line.split('_')[-1]) + adjust]
 #########################################
     else:
+        if item_level >= 160 and stat in ['str','dex','int','luk','any']:
+            adjust = 1;
         if stat in ['str','dex','int','luk']:  # because allstat is a wildcard
             for line in roll:
                 if line.startswith(stat) or line.startswith('all'):
