@@ -14,7 +14,7 @@ selected_equip = ['top']               # input 'hat','glove', 'top', 'bot', 'sho
 num_trials = 500
 
 player_level = 290
-item_level = 150
+item_level = 160
 stat_ratio = [1,3.6,3.6*3.2]                # stat%, att, stat
 
 # Hat - Top/Overall - Bottom - Gloves - Shoes - Cape/Belt/Shoulder
@@ -933,7 +933,10 @@ def count_this_stat(roll, stat):
         if stat in ['str','dex','int','luk']:
             for line in roll:
                 if line.startswith(stat+'_') or line.startswith('all'):
-                    good_lines += [float(line.split('_')[-1])+ adjust] 
+                    if line.startswith('all'):
+                        good_lines += [float(line.split('_')[-1])*1.1+ adjust] 
+                    else:
+                        good_lines += [float(line.split('_')[-1])+ adjust] 
                 elif line.startswith('f'+stat):
                     good_lines += [float(line.split('_')[-1])/stat_ratio[2] + adjust]
                 elif line.startswith(stat+'plvl'):
@@ -957,7 +960,10 @@ def count_this_stat(roll, stat):
         if stat in ['str','dex','int','luk']:  # because allstat is a wildcard
             for line in roll:
                 if line.startswith(stat) or line.startswith('all'):
-                    good_lines += [float(line.split('_')[-1]) + adjust]
+                    if line.startswith('all'):
+                        good_lines += [float(line.split('_')[-1])*1.1+ adjust]
+                    else:
+                        good_lines += [float(line.split('_')[-1]) + adjust]
 
         else:
             for line in roll:
