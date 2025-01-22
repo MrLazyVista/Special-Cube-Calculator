@@ -927,7 +927,7 @@ def count_this_stat(roll, stat):
     good_lines = []
 #########################################
     adjust = 0
-    if item_level >= 160 and stat in ['str','dex','int','luk']:
+    if item_level >= 160 and stat in ['str','dex','int','luk','any']:
         adjust = 1;
     if selected_cube == 'bonus':
         if stat in ['str','dex','int','luk']:
